@@ -1,0 +1,26 @@
+package basic_P;
+
+public class ThreeSixNine2 {
+	public static void main(String[] args) {
+		int n = 20;
+		
+		for(int i=1; i<=n; i++){
+			// int[] arr = new int[i];
+			int b = a%3;
+			
+			try {
+				int a = i%10;
+				int c = i/a;
+				
+				try {
+					int d = c/b;
+				}catch(ArithmeticException e) {
+					System.out.println(i);
+				}
+			}catch(ArithmeticException e) {
+				System.out.println(i);
+			}
+		}
+		
+	}
+}
