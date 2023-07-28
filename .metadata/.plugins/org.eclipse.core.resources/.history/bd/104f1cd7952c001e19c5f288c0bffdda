@@ -1,0 +1,11 @@
+package projClass;
+
+public class Major extends Grade{	// 과목 클래스
+	private String[] major;	// 과목
+	
+	// 과목 생성자, 과목과 점수를 받아 해당 과목의 점수 저장
+	public Major(String...major) {
+		this.major = major;
+	}
+
+}

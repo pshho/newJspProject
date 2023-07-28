@@ -1,0 +1,13 @@
+package projClass;
+
+public class Person extends Major{
+	private String name;	// 사람
+	private String[] majors;	// 해당하는 사람의 모든 과목
+	
+	public Person(String name, String... majors) {
+        this.name = name;
+        this.majors = majors;
+    }
+
+
+}

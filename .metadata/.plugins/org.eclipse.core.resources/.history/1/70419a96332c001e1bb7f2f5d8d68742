@@ -1,0 +1,49 @@
+package basic_P;
+
+public class CalcArgs {
+
+	public static void main(String[] args) {
+		int sum = 0, count = 0, max = 0, min = 0, avg = 0;
+		
+		for (int i=0; i<args.length; i++) {
+			try {
+					if (Integer.parseInt(args[i])%2 == 0 && Integer.parseInt(args[i]) != 0) {
+						sum += Integer.parseInt(args[i]);
+						count ++;
+						
+						if(Integer.parseInt(args[i]) < 0) {
+							if(max < Integer.parseInt(args[i])) {
+								max = Integer.parseInt(args[i]);
+							}							
+						}else if(Integer.parseInt(args[i]) > 0) {
+							if(max < Integer.parseInt(args[i])) {
+								max = Integer.parseInt(args[i]);
+							}
+						}
+						
+						if(min > Integer.parseInt(args[i])) {
+							min = Integer.parseInt(args[i]);
+						}
+					}
+					
+			}catch(NumberFormatException e) {
+				if(i == args.length - 1) {
+					min = 0;
+					
+				}
+				continue;
+			}
+		}
+		
+		try {
+			avg = sum/count;
+		}catch(ArithmeticException e) {
+			avg = 0;
+		}
+		
+		System.out.println("합계: " + sum);
+		System.out.println("평균: " + avg);
+		System.out.println("최대: " + max);
+		System.out.println("최소: " + min);
+	}
+}

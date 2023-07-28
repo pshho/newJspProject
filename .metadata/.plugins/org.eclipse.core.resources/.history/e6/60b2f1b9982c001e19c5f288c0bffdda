@@ -1,0 +1,9 @@
+package projClass;
+
+public class Person extends Major{
+	private String name;	// 사람
+
+	
+
+
+}

@@ -1,0 +1,11 @@
+package projClass;
+
+public class Person extends Major{
+	private String name;	// 사람
+	private String[] majors;
+
+	public Person(String major) {
+		super(major);
+	}
+
+}

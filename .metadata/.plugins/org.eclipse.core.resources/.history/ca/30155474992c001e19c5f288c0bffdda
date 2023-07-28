@@ -1,0 +1,20 @@
+package projClass;
+
+import java.util.ArrayList;
+
+public class Person extends Major{
+	private String name;	// 사람
+
+	public Person(String major) {
+		super(major);
+	}
+	
+	public Person(String name, Major... majors) {
+		this.name = name;
+		this.majors = new ArrayList<>();
+		for (Major major : majors) {
+			this.majors.
+		}
+	}
+
+}

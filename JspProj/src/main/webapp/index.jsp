@@ -21,5 +21,7 @@
 	<a href="err/ccc.jsp">500</a><br/>
 	<a href="err/ddd.jsp">404</a><br/>
 	<a href="err/eee.jsp">type</a><br/>
+	<h2>Calc</h2>
+	<a href="calc/calc.jsp">짝수 계산</a>
 </body>
 </html>

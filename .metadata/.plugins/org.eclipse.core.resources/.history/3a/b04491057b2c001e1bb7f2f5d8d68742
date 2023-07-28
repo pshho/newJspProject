@@ -1,0 +1,15 @@
+package basic_P;
+
+public class StudentTest {
+
+	public static void main(String[] args) {
+		Person person1 = new Person("강남", "국어", "영어", "수학");
+		Person person2 = new Person("강남", "국어", "영어", "수학", "과학");
+		Person person3 = new Person("강남", "국어", "영어", "수학", "과학", "음악");
+		
+		System.out.println(person1.getName());
+		System.out.println(person1.getMajor());
+
+	}
+
+}

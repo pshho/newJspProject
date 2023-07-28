@@ -1,0 +1,17 @@
+package projClass;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Person extends Major{
+	private String name;
+	private List<Major> majors;
+	
+	public Person(String name, Major...majors) {
+		this.name = name;
+		this.majors = majors;
+		
+	}
+
+
+}

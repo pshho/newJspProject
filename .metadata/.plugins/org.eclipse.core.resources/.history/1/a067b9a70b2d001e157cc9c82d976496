@@ -1,0 +1,21 @@
+package oops_p;
+
+public class ExamMain {
+
+	public static void main(String[] args) {
+
+		String[] names = {"현빈", "원빈", "투빈", "장희빈", "미스터빈"};
+		
+		String[] kor = "72,94,63,87,25".split(",");
+		String[] eng = "71,92,69,88,27".split(",");
+		String[] math = "76,95,62,80,23".split(",");
+		
+		Exam[] arr = new Exam[names.length];
+		
+		System.out.println(arr);
+		System.out.println(arr.length);
+		System.out.println(arr[0]);
+		System.out.println(arr[1]);
+	}
+
+}

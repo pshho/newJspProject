@@ -1,0 +1,18 @@
+package basic_P;
+
+public class Major {
+	private String[] major;
+	
+	public Major(String...majorName) {
+		this.major = majorName;
+	}
+	
+	public String[] getMajor() {
+		return major;
+	}
+
+	public void setMajor(String[] major) {
+		this.major = major;
+	}
+
+}

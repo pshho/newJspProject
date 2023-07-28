@@ -1,0 +1,40 @@
+package oops_p;
+
+class AAA{
+	// 클래스는 처음에 선언(공간 부여)
+	// 다음에 멤버 변수에 값 할당
+	int a = setA();
+	int b = setB();
+	int sa = 1111;
+	
+	public AAA() {
+		System.out.println("기본 생성자 난 AAA");
+	}
+	
+	int setA() {
+		System.out.println("SET A");
+		return b;
+	}
+	
+	int setB() {
+		System.out.println("SET B");
+		return 60;
+	}
+	
+	@Override
+	public String toString() {
+		return "AAA [a="+a+" b="+b+" sa="+sa+"]";
+	}
+	
+}
+
+public class InstanceMain {
+
+	public static void main(String[] args) {
+		AAA aaa = new AAA();
+		
+		System.out.println(aaa);
+		System.out.println("---------------");
+	}
+
+}

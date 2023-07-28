@@ -1,0 +1,60 @@
+<%@page import="java.util.Arrays"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>짝수</title>
+</head>
+<body>
+	<h2>짝수 모음</h2>
+	<%
+		String[] cal = request.getParameterValues("calc");
+	
+		int sum = 0, count = 0, max = 0, min = 0;
+		double avg = 0;
+		String reg = "-?\\d+";
+		
+		for (int i=0; i<cal.length; i++) {
+			if(!cal[i].matches(reg)) {
+				continue;
+			}else {
+				// 짝수 검증(0 제외)
+				if (Integer.parseInt(cal[i])%2 == 0 && Integer.parseInt(cal[i]) != 0) {
+					sum += Integer.parseInt(cal[i]);
+					count ++;
+					
+					// 최대값, 최소값 초기값 지정
+					if(max == 0 && min == 0) {
+						max = Integer.parseInt(cal[i]);
+						min = Integer.parseInt(cal[i]);
+					}
+					
+					// 비교 후 최대값 저장
+					if(max < Integer.parseInt(cal[i])) {
+						max = Integer.parseInt(cal[i]);
+					}
+					
+					// 비교 후 최소값 저장
+					if(min > Integer.parseInt(cal[i])) {
+						min = Integer.parseInt(cal[i]);
+					}
+					
+				}
+			}
+		}
+		
+		// 나누기 0 오류 처리 후 오류 없을 시 평균 계산
+		if (sum == 0 || count == 0) {
+			avg = 0;
+		}else {
+			avg = (double)sum/count;
+		}
+	%>
+	<%= "합계: " + sum %>
+	<%= "합계: " + sum %>
+	<%= "최대: " + max %>
+	<%= "최소: " + min %>
+</body>
+</html>

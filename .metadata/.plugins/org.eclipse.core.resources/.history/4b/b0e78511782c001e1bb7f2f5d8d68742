@@ -1,0 +1,13 @@
+package basic_P;
+
+public class CalcStudent extends Student {
+
+	private int sum, avg;
+	
+	public CalcStudent(String name) {
+		super(name);
+	}
+	
+	
+	
+}

@@ -1,0 +1,21 @@
+package projClass;
+
+public class Star {
+
+	public static void main(String[] args) {
+		for(double i=0; i<5; i++) {
+			for(double j=0; j<16-(i+1)/2; j++) {
+				System.out.print(" ");
+				// System.out.print(j);
+			}
+			
+			for(double j=0; j<i+1; j++) {
+				System.out.print("☆");
+				// System.out.print("두");
+			}
+			
+			System.out.println();
+		}
+	}
+
+}

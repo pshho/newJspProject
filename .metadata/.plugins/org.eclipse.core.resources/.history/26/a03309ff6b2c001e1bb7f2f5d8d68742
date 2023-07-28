@@ -1,0 +1,105 @@
+<%@page import="java.util.Comparator"%>
+<%@page import="java.util.Arrays"%>
+<%@page import="basic_P.Student"%>
+<%@page import="java.util.ArrayList"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+	String majName = "기본";
+	if(request.getParameter("majName") != null){
+		majName = request.getParameter("majName");
+	}
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>학생 점수 계산</title>
+</head>
+<script type="text/javascript">
+	function rankChange(){
+		let form = document.qwer;
+		form.action="?";
+		form.submit();
+	}
+</script>
+<body>
+	<%
+		String[] stds = request.getParameterValues("std");
+		String[] kors = request.getParameterValues("kor");
+		String[] engs = request.getParameterValues("eng");
+		String[] maths = request.getParameterValues("math");
+		
+		ArrayList<Student> students = new ArrayList<>();
+		
+		for(int i=0; i<stds.length; i++){
+			Student std = new Student(stds[i], kors[i], engs[i], maths[i]);
+			students.add(std);
+		}
+	%>
+	<form action="" name="qwer">
+		<table border="">
+			<thead>
+				<tr>
+					<td colspan="7" align="right">
+						정렬:
+						<select name="majName" id="" onchange="rankChange()">
+							<% 
+								String[] maj = {"기본", "평균"};
+								for (int i=0; i<maj.length; i++) {
+									String sel = "";
+									
+									if(maj[i].equals(majName)){
+										sel = "selected";
+									}
+							%>
+								<option <%= sel %> ><%= maj[i] %></option>
+							<% } %>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>이름</td><td>국어</td><td>영어</td><td>수학</td><td>총점</td><td>평균</td><td>등수</td>
+				</tr>
+			</thead>
+			<tbody>
+				<%
+					Comparator<Student> studentCompare;
+					if(majName.equals("기본")) {
+					
+						for (int i=0; i<students.size(); i++) {
+							int count = 1;
+							for(int j=0; j<students.size(); j++){
+								if(students.get(i).getAvg() < students.get(j).getAvg()){
+									// 예를 들어 첫번째 학생이 두번째 학생부터 마지막 학생까지 점수를 비교해서 지면 등수(count)가 올라감
+									// 두번째 학생도 마찬가지로 모든 학생고 비교해서 등수가 지면 올라감
+									count++;
+								}
+							}
+							// 최종 등수를 저장
+							students.get(i).setRank(count);
+							
+							studentCompare = students.get(i);
+				%>
+					<tr>
+						<td><%= students.get(i).getName() %></td>
+						<td><%= students.get(i).getKor() %></td>
+						<td><%= students.get(i).getEng() %></td>
+						<td><%= students.get(i).getMath() %></td>
+						<td><%= students.get(i).getSum() %></td>
+						<td><%= students.get(i).getAvg() %></td>
+						<td><%= students.get(i).getRank() %></td>
+					</tr>
+					<% } %>
+				<% 
+					}else if(majName.equals("평균")) {
+						
+						Arrays.sort(students, studentCompare);
+						
+				%>
+				<% } %>
+			</tbody>
+		</table>
+	</form>
+</body>
+</html>

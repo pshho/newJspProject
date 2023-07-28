@@ -1,0 +1,9 @@
+package oops_p;
+
+public class InstanceMain {
+
+	public static void main(String[] args) {
+		
+	}
+
+}

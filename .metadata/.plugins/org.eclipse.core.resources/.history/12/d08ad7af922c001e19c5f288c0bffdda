@@ -1,0 +1,16 @@
+package projClass;
+
+public class Major {
+	private String major;
+	private int grade;
+	
+	public Major(String major, int grade) {
+		this.major = major;
+		this.grade = grade;
+	}
+	
+	public getMajor() {
+		return major; 
+	}
+
+}

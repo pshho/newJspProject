@@ -1,0 +1,11 @@
+package basic_P;
+
+public class CalcStudent extends Student {
+
+	public CalcStudent(String name) {
+		super(name);
+	}
+	
+	
+	
+}

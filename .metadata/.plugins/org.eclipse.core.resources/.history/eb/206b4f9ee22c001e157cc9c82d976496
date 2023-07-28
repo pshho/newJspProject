@@ -1,0 +1,63 @@
+package basic_P;
+
+import java.util.ArrayList;
+
+public class Person{
+	private String name, kor, eng, math;
+	private int sum, avg, rank;
+	
+	public Person(String name, String kor, String eng, String math) {
+		this.name = name;
+		this.kor = kor;
+		this.eng = eng;
+		this.math = math;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public String getKor() {
+		return kor;
+	}
+	
+	public String getEng() {
+		return eng;
+	}
+	
+	public String getMath() {
+		return math;
+	}
+	
+	public int getRank() {
+		return rank;
+	}
+	
+	public int getSum() {
+		int kors = Integer.parseInt(kor);
+		int engs = Integer.parseInt(eng);
+		int maths = Integer.parseInt(math);
+		
+		this.sum = kors + engs + maths;
+		
+		return sum;
+	}
+	
+	public int getAvg() {
+		this.avg = getSum()/3;
+		
+		return avg;
+	}
+	
+	public void getRank(ArrayList<Person> stds) {
+		for(int i=0; i<stds.size(); i++) {
+			this.rank = 1;
+			for(int j=0; j<stds.size(); j++) {
+				if(stds.get(i).getAvg() < stds.get(j).getAvg()) {
+					rank++;
+				}
+			}
+		}
+	}
+	
+}

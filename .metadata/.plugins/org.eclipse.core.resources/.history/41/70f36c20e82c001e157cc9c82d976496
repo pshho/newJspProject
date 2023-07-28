@@ -1,0 +1,16 @@
+package projClass;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Person extends Major{
+	private String name;	// 사람
+	private List<Major> majors;	// 과목 객체(점수 포함)
+	private String[] grades;
+	
+	public Person(String name, String... grades) {
+		this.name = name;
+		this.majors = new ArrayList<>();
+	}
+
+}
