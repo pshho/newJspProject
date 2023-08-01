@@ -11,3 +11,14 @@
 1690473344298	Delete element
 1690504926428	Delete element
 1690507284630	Delete element
+1690564620621	Rename package 'projClass'
+1690564647190	Move compilation unit
+1690564654172	Rename type 'Star'
+1690569673412	Rename compilation unit 'Person.java'
+1690618229230	Rename type 'Major'
+1690634860892	Encapsulate field 'categories'
+1690635165454	Encapsulate field 'categories'
+1690635223379	Infer generic type arguments
+1690635258856	Infer generic type arguments
+1690635358064	Infer generic type arguments
+1690644666761	Copy file

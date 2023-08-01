@@ -1,0 +1,49 @@
+package JspProject;
+
+import java.util.Arrays;
+
+public class Subject{ // 과목 클래스
+	private String grade;
+	private String[] subjects; // 과목
+	private int sum; // 합계, 등수
+	private double avg; // 평균
+	private int rank; // 등수
+
+	// 해당 카테고리의 과목별 개수의 차이를 두기 위한 생성자
+	public Subject(String... subjects) {
+		this.subjects = subjects;
+		
+		calc();
+	}
+	
+	// 계산 함수(총점, 평균, 등급)
+	void calc() {
+		for(int i=0; i<subjects.length; i++) {
+			this.sum += Integer.parseInt(subjects[i]);
+		}
+		
+		this.avg = (double)sum/subjects.length;
+		
+		// 등급 배열을 만들어 등급 변수에 값 저장 - 점수 기준에 맞춰서(5점 단위)
+		String[] grades = "F,F,F,F,F,F,D,D,D,D,D,D,D,D+,C,C+,B,B+,A,A+".split(",");
+		this.grade = grades[((int)(avg/5) == 20) ? 19:(int)(avg/5)];
+	}
+	
+	// 등수 계산 method, 평균 비교를 위해 major를 배열로 선언하고 매개변수로 받음
+	void calcRank(Subject[] subjects) {
+		this.rank = 1;
+		for(Subject subj : subjects) {
+			if(avg < subj.avg) {
+				rank++;
+			}
+		}
+	}
+	
+	
+
+	@Override
+	public String toString() {
+		return "Subject [subjects=" + Arrays.toString(subjects) + ", sum=" + sum + ", avg=" + avg + ", rank=" + rank
+				+ ", grade=" + grade + "]";
+	}
+}

@@ -1,0 +1,39 @@
+package JspProject;
+
+import java.util.Arrays;
+
+public class People extends Subject{ // 과목(총점, 평균, 등수, 등급) 배열 상속받은 사람 클래스
+	private String name; // 사람
+	private String[] names; // 아스키코드로 가나다 순서를 정렬하기 위해 입력받을 사람들 배열
+	private int[] namess; // 가나다 순서를 정렬할 배열
+
+	// 사람과 과목은 1대 다의 관계
+	public People(String name, String... subjects) {
+		super(subjects);
+		this.name = name;
+	}
+	
+	public People() {};
+	
+	// 초기 입력 받은 사람들의 이름 데이터
+	public void setNames(String[] names) {
+		this.names = names;
+	}
+	
+	public void setNamess(int[] namess) {
+		for(int i=0; i<names.length; i++) {
+			this.namess[i] = names[i].charAt(0);
+		}
+	}
+	
+	public String getName() {
+		return name;
+	}
+
+	@Override
+	public String toString() {
+		return "People [name=" + name + ", names=" + Arrays.toString(names) + ", namess=" + Arrays.toString(namess)
+				+ ", toString()=" + super.toString() + "]";
+	}
+	
+}

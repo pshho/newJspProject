@@ -1,0 +1,32 @@
+package exercise;
+
+public class TestMain {
+
+	void quick(int left, int right, int[] b) {
+		int pivot = left;
+		int lefts = pivot+1;
+		int rights = right;
+		
+		while(lefts <= rights) {
+			while(lefts<=rights && b[pivot] >= b[lefts]) {
+				lefts++;
+			}
+			
+			while(lefts<=rights && b[pivot] <= b[rights]) {
+				rights--;
+			}
+			
+			if(lefts <= rights) {
+				int temp = b[lefts];
+				b[lefts] = b[rights];
+				b[rights] = temp;
+			}
+		}
+	}
+	
+	public static void main(String[] args) {
+		int[] a = {10, 2, 6, 1, 3, 8, 5, 4, 7, 9};
+		
+	}
+
+}

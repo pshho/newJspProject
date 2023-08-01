@@ -23,5 +23,7 @@
 	<a href="err/eee.jsp">type</a><br/>
 	<h2>Calc</h2>
 	<a href="calc/calc.jsp">짝수 계산</a>
+	<h2>점수 계산</h2>
+	<a href="hwProject/categories">점수 계산</a>
 </body>
 </html>

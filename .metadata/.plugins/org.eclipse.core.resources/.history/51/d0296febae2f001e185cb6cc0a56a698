@@ -1,0 +1,55 @@
+package JspProject;
+
+public class People extends Subject{ // 과목(총점, 평균, 등수, 등급) 배열 상속받은 사람 클래스
+	private String name; // 사람
+
+	// 사람과 과목은 1대 다의 관계
+	public People(String name, String... subjects) {
+		super(subjects);
+		this.name = name;
+	}
+	
+	// 퀵정렬
+	void namesDistinct(int left, int right, Category[] category) {
+		if(left > right) {
+			return;
+		}
+		
+		int pivot = left;
+		int lefts = pivot+1;
+		int rights = right;
+		
+		while(lefts <= rights) {
+			while(lefts<=rights && category[pivot].getRank() <= category[lefts].getRank()) {
+				lefts++;
+			}
+			
+			while(lefts<=rights && category[pivot].getRank() >= category[rights].getRank()) {
+				rights--;
+			}
+			
+			if(lefts < rights) {
+				Category temp = category[lefts];
+				category[lefts] = category[rights];
+				category[rights] = temp;
+			}
+		}
+		
+		Category temp = category[pivot];
+		category[pivot] = category[rights];
+		category[rights] = temp;
+		
+		namesDistinct(left, rights-1, category);
+		namesDistinct(rights+1, right, category);
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	@Override
+	public String toString() {
+		return "People [name=" + name + ", toString()=" + super.toString() + "]";
+	}
+	
+}

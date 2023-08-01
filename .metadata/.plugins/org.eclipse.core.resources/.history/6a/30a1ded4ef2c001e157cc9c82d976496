@@ -1,7 +1,0 @@
-package projClass;
-
-public class Person{
-	private String name;	// 사람
-
-
-}

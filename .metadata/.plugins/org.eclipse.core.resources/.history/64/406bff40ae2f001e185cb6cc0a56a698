@@ -1,0 +1,21 @@
+package JspProject;
+
+public class People extends Subject{ // 과목(총점, 평균, 등수, 등급) 배열 상속받은 사람 클래스
+	private String name; // 사람
+
+	// 사람과 과목은 1대 다의 관계
+	public People(String name, String... subjects) {
+		super(subjects);
+		this.name = name;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	@Override
+	public String toString() {
+		return "People [name=" + name + ", toString()=" + super.toString() + "]";
+	}
+	
+}
