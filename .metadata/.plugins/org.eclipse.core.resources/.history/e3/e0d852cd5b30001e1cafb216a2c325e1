@@ -51,17 +51,20 @@ public class HwProject extends HttpServlet {
 		String[] categories = null;
 		String[] distinct = null;
 		String[] subjects = null;
-		List<String> newDistinct = null;
-		List<String> newCategories = null;
 		
 		if(command.equals("/categories")) {
-		    categories = "분류,직장인,예체능계,일반계".split(","); // 카테고리 분류 - 나중에 미리 저장된 데이터베이스나 Class와 연결 가능
+		    categories = "분류,직장인,예체능계열,일반계열".split(","); // 카테고리 분류 - 나중에 미리 저장된 데이터베이스나 Class와 연결 가능
 		    sel = request.getParameter("sel"); // 개별 카테고리 이름
 		    subjects = "국어,영어,수학,사탐,과탐,체육,음악,미술,가정".split(","); // 과목 분류 - 카테고리 분류와 마찬가지
-		    names = "차의십,가의일,마의오,아의팔,나의이,바의육,라의사,자의구,사의칠,다의삼".split(","); // 랜덤 이름 데이터 위와 마찬가지
+		    String nameCount = request.getParameter("namesCount"); // 데이터 입력할 학생의 수
+		    if (nameCount == null) {
+		    	names = null; // 맨 처음에 페이지 진입 시 표시할 사람 수
+		    }else {
+		    	names = new String[Integer.parseInt(nameCount)]; // 입력받은 학생수만큼의 이름 데이터 배열		    	
+		    }
 		    
 		    // 카테고리를 선택했을 때 달라질 과목을 새로운 배열에 담는 작업
-		    if(sel != null) {
+		    if(sel != null && !(sel.equals("분류"))) {
 		    	for(int i=0; i<categories.length; i++) {
 		    		distinct = Arrays.copyOfRange(subjects, 0, i * 2 + 3);
 		    		if(sel.equals(categories[i])) {
@@ -75,6 +78,7 @@ public class HwProject extends HttpServlet {
 		    request.setAttribute("categories", categories); // 카테고리 목록
 		    request.setAttribute("distinct", distinct); // 카테고리 별 과목 수와 이름
 		    request.setAttribute("names", names); // 이름들
+		    request.setAttribute("nameCount", nameCount); // 학생수
 			request.setAttribute("sel", sel); // 선택된 개별 카테고리
 		    
 			requestPage = "categories.jsp"; // 초기 데이터 입력 페이지
@@ -94,35 +98,32 @@ public class HwProject extends HttpServlet {
 			String[] iterCategories = request.getParameterValues("newCategories");
 			
 			// 개별 과목과 총점, 평균, 등수, 등급을 합친 하나의 배열
+			List<String> newDistinct = new ArrayList<>();
 			if(iterDistinct != null) {
-				newDistinct = new ArrayList<>();
 				newDistinct.addAll(Arrays.asList(iterDistinct));
 			}else {
-				newDistinct = new ArrayList<>();
 				newDistinct.addAll(Arrays.asList(distinct));
 				newDistinct.addAll(Arrays.asList(result));
 			}
 			
 			// 과목별 순위, 전체 등수, 이름 등의 순서로 정렬하기 위한 하나의 배열
+			List<String> newCategories = new ArrayList<>();
 			if(iterCategories != null) {
-				newCategories = new ArrayList<>();
 				newCategories.addAll(Arrays.asList(iterCategories));
 			}else {
-				newCategories = new ArrayList<>();
 				newCategories.addAll(Arrays.asList(categories));
 				newCategories.addAll(Arrays.asList(distinct));
 			}
 			
-			System.out.println(newDistinct.size());
-			
 			// Subject와 People을 상속받은 Category Class를 통해 이름, 점수, 카테고리 데이터를 받아와 처리
 			Category[][] results = new Category[sels.length][names.length];
 			
-			// 미리 선언한 Category Class의 2차원 배열에 이름, 점수, 카테고리 데이터를 입력해 생성하는 작업
+			// 미리 작성된 Category Class의 2차원 배열에 이름, 점수, 카테고리 데이터를 입력해 생성하는 작업
 			for(int i=0; i<sels.length; i++) {
 				for(int j=0; j<names.length; j++) {
 					String[] sa = Arrays.copyOfRange(subjects, j*(newDistinct.size()-result.length), (j+1)*(newDistinct.size()-result.length));
 					results[i][j] = new Category(sels[i], names[j], sa); // Category 2차원 배열 생성
+					results[i][j].setNames(names[j]); // 이름 정렬을 위한 아스키 코드값 할당
 				}
 			}
 			
@@ -134,7 +135,27 @@ public class HwProject extends HttpServlet {
 				}
 			}
 			
-			request.setAttribute("newCategories", newCategories); // 출력 페이지의 정렬 카테고리(기본, 이름, 등수, 등급)
+			// 퀵정렬을 위한 생성자
+			Category quick = new Category();
+			quick.setCategories(newCategories); // 퀵정렬을 위한 정렬 배열 설정
+			// 요청받은 정렬 카테고리에 따라 정렬하기 위한 for문
+			for(int i=0; i<sels.length; i++) {
+				quick.quickDistinct(0, names.length-1, selDis, results[i]);
+			}
+			
+			// 이클립스에서 결과 확인을 위한 출력문
+			for(int i=0; i<sels.length; i++) {
+				for(Category cat:results[i]) {
+					System.out.println(cat);
+				}
+				System.out.println();
+			}
+			
+			for(int i=0; i<newCategories.size(); i++) {
+				System.out.print(quick.getCategories().get(i) + " ");
+			}
+			
+			request.setAttribute("newCategories", newCategories); // 출력 페이지의 정렬 카테고리(이름, 전체 등수, 과목별 등수)
 			request.setAttribute("results", results); // Category Class로 정리된 실제 데이터
 			// 입력 페이지에서 받아온 선택된 개별 카테고리의 과목 수와 이름
 			// 출력 페이지에 추가로 제공할 카테고리(총점, 평균, 등수, 등급)

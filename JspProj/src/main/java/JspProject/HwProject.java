@@ -57,9 +57,8 @@ public class HwProject extends HttpServlet {
 		    sel = request.getParameter("sel"); // 개별 카테고리 이름
 		    subjects = "국어,영어,수학,사탐,과탐,체육,음악,미술,가정".split(","); // 과목 분류 - 카테고리 분류와 마찬가지
 		    String nameCount = request.getParameter("namesCount"); // 데이터 입력할 학생의 수
-		    if (nameCount == null) {
-		    	names = null; // 맨 처음에 페이지 진입 시 표시할 사람 수
-		    }else {
+		    
+		    if (nameCount != null) {
 		    	names = new String[Integer.parseInt(nameCount)]; // 입력받은 학생수만큼의 이름 데이터 배열		    	
 		    }
 		    
