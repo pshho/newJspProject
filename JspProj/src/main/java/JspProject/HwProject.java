@@ -170,8 +170,6 @@ public class HwProject extends HttpServlet {
 		// Client에 의해 요청된 url로부터 실제 입력 및 출력 Page로 전달하기 위한 객체
 		RequestDispatcher dispatcher = request.getRequestDispatcher(requestPage);
 		dispatcher.forward(request, response);
-		
-		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

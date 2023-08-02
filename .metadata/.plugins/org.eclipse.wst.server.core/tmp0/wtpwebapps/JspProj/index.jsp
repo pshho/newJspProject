@@ -25,5 +25,11 @@
 	<a href="calc/calc.jsp">짝수 계산</a>
 	<h2>점수 계산</h2>
 	<a href="hwProject/categories">점수 계산</a>
+	<h2>forward, include, redirect</h2>
+	<a href="redirect/a.jsp?nick=ccc">redirect</a><br/>
+	<a href="forward/a.jsp?nick=eee">forward</a><br/>
+	<a href="include/a.jsp?nick=fff">include</a><br/>
+	<h2>주민번호</h2>
+	<a href="signupEx/resident.jsp">주민번호</a>
 </body>
 </html>

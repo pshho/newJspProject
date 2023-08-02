@@ -4,7 +4,7 @@ public class StarMain {
 
 	public static void main(String[] args) {
 		for(int i=0; i<7; i++) {
-			for(int j=1; j<20-(i+1); j += 1) {
+			for(int j=1; j<20-(i+1)+1; j += 1) {
 				System.out.print(" ");
 				// System.out.print(j);
 			}
@@ -43,7 +43,7 @@ public class StarMain {
 		}
 		
 		for(int i=7; i>=0; i--) {
-			for(int j=1; j<20-(i+1); j += 1) {
+			for(int j=1; j<20-(i+1)+1; j += 1) {
 				System.out.print(" ");
 				// System.out.print(j);
 			}

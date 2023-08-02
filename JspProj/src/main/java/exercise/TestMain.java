@@ -37,21 +37,22 @@ public class TestMain {
 	
 	public static void main(String[] args) {
 		int[] a = {10, 2, 6, 1, 3, 8, 5, 4, 7, 9};
+		int[] b = {87, 23, 56, 78, 42, 19, 99, 65, 36};
 		
 		TestMain test = new TestMain();
 		
-		test.quick(0, a.length-1, a);
+		test.quick(0, b.length-1, b);
 		
-		for(int num : a) {
+		for(int num : b) {
 			System.out.print(num + " ");
 		}
 		
-		String[] names = {"가","나","다","라","마"};
-		
-		for(int i=0; i<names.length; i++) {
-			int ddddd = names[i].charAt(0);
-			System.out.print(ddddd + " ");
-		}
+//		String[] names = {"가","나","다","라","마"};
+//		
+//		for(int i=0; i<names.length; i++) {
+//			int ddddd = names[i].charAt(0);
+//			System.out.print(ddddd + " ");
+//		}
 		
 	}
 
