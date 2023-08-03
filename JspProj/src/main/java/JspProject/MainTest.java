@@ -1,6 +1,7 @@
 package JspProject;
 
-import java.time.Year;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.Random;
 
 
@@ -79,14 +80,33 @@ public class MainTest {
 //		
 //		System.out.println(currentYear);
 		
-		String a = "930110";
-		String b = "5000000";
+		String a = "020710";
+		String b = "300000";
 		
 		ResidentNumber bcd = new ResidentNumber(a, b);
 		
-		System.out.println(bcd.getFrontNumber());
-		System.out.println(bcd.getBackNumber());
-		System.out.println(bcd.getBirth());
+		// System.out.println(b.charAt(0)-'0');
+		
+		System.out.println(bcd.getDomeForeign());
+		
+		for(int fr : bcd.getFrontNumber()) {
+			System.out.println(fr);
+		}
+		
+//		LocalDate today = LocalDate.now();
+//		LocalDate day = LocalDate.of(2004, 8, 3);
+//		System.out.println(today);
+//		System.out.println(day);
+		
+//		Period period = Period.between(day, today);
+//		System.out.println(period.getYears());
+//		System.out.println(today.getYear()-19);
+//		
+//		if(period.getYears() >= 19) {
+//			System.out.println("19년 지남");
+//		}else {
+//			System.out.println("19년 안지남");
+//		}
 		
 	}
 

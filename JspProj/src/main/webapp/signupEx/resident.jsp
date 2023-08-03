@@ -8,12 +8,12 @@
 <title>주민번호 입력</title>
 </head>
 <body>
-	<form action="" method="post">
+	<form action="?" method="post">
 		<label for="name">이름</label>
 		<input type="text" name="name" id="name">
 		<br/><label>주민번호</label>
-		<input type="number" name="frontNumber" maxlength="6">
-		<input type="number" name="backNumber" maxlength="7">
+		<input type="text" name="frontNumber" maxlength="6">
+		<input type="text" name="backNumber" maxlength="7">
 		<input type="submit" value="제출">
 	</form>
 	
@@ -25,20 +25,7 @@
 		if(fN != null && bN != null){
 			ResidentNumber rN = new ResidentNumber(fN, bN);
 			
-			String rfN = rN.getFrontNumber();
-			String rbN = rN.getBackNumber();
-			
-			if(rbN.equals("5") || rbN.equals("7") ||
-				rbN.equals("6") || rbN.equals("8")){
-				response.sendRedirect("foreignSingup.jsp?name=" + name + "&fN=" + fN + "&bN=" + bN);
-			}else{
-				if(Integer.parseInt(rfN) > 19){
-					request.setCharacterEncoding("utf-8");
-					response.sendRedirect("generalSignup.jsp?name=" + name + "&fN=" + fN + "&bN=" + bN);
-				}else if(Integer.parseInt(rfN) <= 19){
-					response.sendRedirect("minoritySingup.jsp?name=" + name + "&fN=" + fN + "&bN=" + bN);
-				}				
-			}
+			response.sendRedirect(rN.getDomeForeign()+"Signup.jsp?name=" + name + "&fN=" + fN + "&bN=" + bN);
 		}
 	%>
 </body>
