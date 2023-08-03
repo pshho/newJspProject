@@ -11,3 +11,6 @@
 8월 02, 2023 23:39:16.844 [22404:16108:0802/233916.843:ERROR:usb_descriptors.cc(141)] Failed to read length for configuration 1.
 8월 02, 2023 23:39:16.845 [22404:16108:0802/233916.843:ERROR:usb_descriptors.cc(100)] Failed to read all configuration descriptors. Expected 2, got 1.
 8월 02, 2023 23:39:16.845 [22404:16108:0802/233916.843:ERROR:device_event_log_impl.cc(222)] [23:39:16.842] USB: usb_device_win.cc:95 Failed to read descriptors from \\?\usb#vid_0bda&pid_8153#000001#{a5dcbf10-6530-11d2-901f-00c04fb951ed}.
+
+8월 03, 2023 19:58:05.999 NEW SESSION
+8월 03, 2023 19:58:05.999 [22452:19976:0803/195805.987:ERROR:device_event_log_impl.cc(222)] [19:58:05.986] USB: usb_service_win.cc:104 SetupDiGetDeviceProperty({{A45C254E-DF1C-4EFD-8020-67D146A850E0}, 6}) failed: ��Ұ� �����ϴ�. (0x490)

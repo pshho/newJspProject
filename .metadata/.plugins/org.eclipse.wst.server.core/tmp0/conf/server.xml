@@ -160,7 +160,11 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="C:\newJspProject\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="C:\newJspProject\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\JspProj" path="/JspProj" reloadable="true" source="org.eclipse.jst.jee.server:JspProj"/><Context docBase="C:\newJspProject\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\mvcProj" path="/mvcProj" reloadable="true" source="org.eclipse.jst.jee.server:mvcProj"/></Host>
+      <Context docBase="C:\newJspProject\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="C:\newJspProject\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\JspProj" path="/JspProj" reloadable="true" source="org.eclipse.jst.jee.server:JspProj"/><Context docBase="C:\newJspProject\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\mvcProj" path="/mvcProj" reloadable="true" source="org.eclipse.jst.jee.server:mvcProj">
+	<Resource auth="Container" driverClassName="com.mysql.cj.jdbc.Driver" name="mvc322" password="123456" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3306/db322" username="usr322"/>
+</Context><Context docBase="C:\newJspProject\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\mvcExercise" path="/mvcExercise" reloadable="true" source="org.eclipse.jst.jee.server:mvcExercise">
+	<Resource auth="Container" driverClassName="com.mysql.cj.jdbc.Driver" name="green_db322" password="pseongho235@" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3306/green_db322" username="greenUsr322"/>
+</Context></Host>
     </Engine>
   </Service>
 </Server>
