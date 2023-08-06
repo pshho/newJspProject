@@ -3,4 +3,5 @@
   <module moduleId="org.eclipse.jst.jee.server:JspProj" serverId="Tomcat v9.0 Server at localhost"/>
   <module moduleId="org.eclipse.jst.jee.server:mvcExercise" serverId="Tomcat v9.0 Server at localhost"/>
   <module moduleId="org.eclipse.jst.jee.server:mvcProj" serverId="Tomcat v9.0 Server at localhost"/>
+  <module moduleId="org.eclipse.jst.jee.server:newMVC" serverId="Tomcat v9.0 Server at localhost"/>
 </modules>
