@@ -9,5 +9,6 @@
 <body>
 	<h2>MVC Project</h2>
 	<p><a href="board/BList">게시판</a></p>
+	<p><a href="gallery/GalleryList">갤러리</a></p>
 </body>
 </html>

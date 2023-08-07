@@ -17,3 +17,7 @@
 
 8월 04, 2023 11:37:06.906 NEW SESSION
 8월 04, 2023 11:37:06.906 [9564:13724:0804/113706.894:ERROR:device_event_log_impl.cc(222)] [11:37:06.893] USB: usb_service_win.cc:104 SetupDiGetDeviceProperty({{A45C254E-DF1C-4EFD-8020-67D146A850E0}, 6}) failed: ��Ұ� �����ϴ�. (0x490)
+
+8월 07, 2023 19:33:28.724 NEW SESSION
+8월 07, 2023 19:33:28.724 [21868:19776:0807/193328.722:ERROR:device_event_log_impl.cc(222)] [19:33:28.721] USB: usb_service_win.cc:104 SetupDiGetDeviceProperty({{A45C254E-DF1C-4EFD-8020-67D146A850E0}, 6}) failed: ��Ұ� �����ϴ�. (0x490)
+8월 07, 2023 21:53:35.821 [21868:19776:0807/215335.821:ERROR:device_event_log_impl.cc(222)] [21:53:35.819] USB: usb_service_win.cc:104 SetupDiGetDeviceProperty({{A45C254E-DF1C-4EFD-8020-67D146A850E0}, 6}) failed: ��Ұ� �����ϴ�. (0x490)

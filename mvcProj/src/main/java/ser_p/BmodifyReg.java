@@ -11,6 +11,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import controller.BoardService;
 import model_p.BoardDAO;
 import model_p.BoardDTO;
+import model_p.PageData;
 
 public class BmodifyReg implements BoardService {
 
@@ -23,6 +24,7 @@ public class BmodifyReg implements BoardService {
 		try {
 			MultipartRequest mr = new MultipartRequest(request, path, 10*1024*1024, "utf-8", new DefaultFileRenamePolicy());
 			BoardDTO dto = new BoardDTO();
+			PageData pd = (PageData)request.getAttribute("pd");
 			
 			dto.setId(Integer.parseInt(mr.getParameter("id")));
 			dto.setTitle(mr.getParameter("title"));
@@ -32,20 +34,20 @@ public class BmodifyReg implements BoardService {
 			dto.setUpfile(mr.getFilesystemName("upfile"));
 			
 			String msg = "비밀번호가 일치하지 않습니다.";
-			String goUrl = "BmodifyForm?id="+dto.getId();
+			String goUrl = "BmodifyForm?id="+dto.getId()+"&page="+pd.page;
 			
 			// id/pw 검사 및 파일정보 가져오기
 			if(new BoardDAO().modify(dto) > 0) { // id, pw가 일치하다면
 							
 				msg = "수정되었습니다.";
-				goUrl = "BDetail?id="+dto.getId();
+				goUrl = "BDetail?id="+dto.getId()+"&page="+pd.page;
 			}else {
 				if(mr.getFilesystemName("upfile") != null) {
 					new File(path+"\\"+mr.getFilesystemName("upfile")).delete();
 				}
 			}
 			
-			request.setAttribute("mainPage", "alert");
+			request.setAttribute("mainPage", "inc/alert");
 			request.setAttribute("msg", msg);
 			request.setAttribute("goUrl", goUrl);
 

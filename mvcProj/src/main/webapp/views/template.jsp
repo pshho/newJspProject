@@ -13,7 +13,9 @@
 			<td><jsp:include page="inc/header.jsp" /></td>
 		</tr>
 		<tr>
-			<td><jsp:include page="board/${ mainPage }.jsp" /></td>
+			<td>
+				<jsp:include page="${ mainPage }.jsp" />
+			</td>
 		</tr>
 		<tr>
 			<td><jsp:include page="inc/footer.jsp" /></td>

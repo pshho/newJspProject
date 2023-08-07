@@ -26,12 +26,14 @@ public class BoardDAO {
 		}
 	}
 	
-	public ArrayList<BoardDTO> list(){
-		sql = "select * from board order by id desc";		
+	public ArrayList<BoardDTO> list(PageData pd){
+		sql = "select * from board order by gid desc, seq limit ?, ?";
 		ArrayList<BoardDTO> res = new ArrayList<>();
 		
 		try {
 			ptmt = con.prepareStatement(sql);
+			ptmt.setInt(1, pd.start);
+			ptmt.setInt(2, pd.limit);
 			rs = ptmt.executeQuery();
 			
 			while(rs.next()) {
@@ -57,6 +59,25 @@ public class BoardDAO {
 		}
 		
 		return res;
+	}
+	
+	public int totalCnt() {
+		
+		sql = "select count(*) from board";
+		int totalCnt = 0;
+		
+		try {
+			ptmt = con.prepareStatement(sql);
+			rs = ptmt.executeQuery();
+			rs.next();
+			totalCnt = rs.getInt(1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		
+		return totalCnt;
 	}
 	
 	public BoardDTO detail(int id){
@@ -107,25 +128,31 @@ public class BoardDAO {
 	}
 	
 	public void write(BoardDTO dto){
-		sql = "insert into board(title, pname, content, pw, upfile, reg_date, cnt, seq, lev, gid) "
-				+ "values(?, ?, ?, ?, ?, sysdate(), -1, 0, 0, 0)";
 		
 		try {
-			ptmt = con.prepareStatement(sql);
-			ptmt.setString(1, dto.getTitle());
-			ptmt.setString(2, dto.getPname());
-			ptmt.setString(3, dto.getContent());
-			ptmt.setString(4, dto.getPw());
-			ptmt.setString(5, dto.getUpfile());
-			ptmt.executeUpdate();
-			
-			ptmt.close();
-			
-			sql = "select max(id) from board";
+			sql = "select max(id)+1 from board";
 			ptmt = con.prepareStatement(sql);
 			rs = ptmt.executeQuery();
 			rs.next();
 			dto.setId(rs.getInt(1));
+			dto.setGid(rs.getInt(1));
+			
+			ptmt.close();
+			
+			sql = "insert into board(id, title, pname, content, pw, upfile, reg_date, cnt, seq, lev, gid) "
+					+ "values(?, ?, ?, ?, ?, ?, sysdate(), -1, 0, 0, ?)";
+			
+			ptmt = con.prepareStatement(sql);
+			ptmt.setInt(1, dto.getId());
+			ptmt.setString(2, dto.getTitle());
+			ptmt.setString(3, dto.getPname());
+			ptmt.setString(4, dto.getContent());
+			ptmt.setString(5, dto.getPw());
+			ptmt.setString(6, dto.getUpfile());
+			ptmt.setInt(7, dto.getId());
+			ptmt.executeUpdate();
+			
+			ptmt.close();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -196,6 +223,63 @@ public class BoardDAO {
 			close();			
 		}
 		return res;
+	}
+	
+	public void fileDelete(BoardDTO dto) {
+		sql = "update board set upfile = null where id = ? and pw = ?";
+		
+		try {
+			ptmt = con.prepareStatement(sql);
+			ptmt.setInt(1, dto.getId());
+			ptmt.setString(2, dto.getPw());
+			ptmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+	}
+	
+	public void reply(BoardDTO dto){
+		
+		try {
+			sql = "update board set seq = seq + 1 where gid = ? and seq > ?";
+			ptmt = con.prepareStatement(sql);
+			ptmt.setInt(1, dto.getGid());
+			ptmt.setInt(2, dto.getSeq());
+			ptmt.executeUpdate();
+			ptmt.close();
+			
+			sql = "select max(id)+1 from board";
+			ptmt = con.prepareStatement(sql);
+			rs = ptmt.executeQuery();
+			rs.next();
+			dto.setId(rs.getInt(1));
+			
+			ptmt.close();
+			
+			sql = "insert into board(id, title, pname, content, pw, upfile, reg_date, cnt, seq, lev, gid) "
+					+ "values(?, ?, ?, ?, ?, ?, sysdate(), -1, ?, ?, ?)";
+			
+			ptmt = con.prepareStatement(sql);
+			ptmt.setInt(1, dto.getId());
+			ptmt.setString(2, dto.getTitle());
+			ptmt.setString(3, dto.getPname());
+			ptmt.setString(4, dto.getContent());
+			ptmt.setString(5, dto.getPw());
+			ptmt.setString(6, dto.getUpfile());
+			ptmt.setInt(7, dto.getSeq()+1);
+			ptmt.setInt(8, dto.getLev()+1);
+			ptmt.setInt(9, dto.getGid());
+			ptmt.executeUpdate();
+			
+			ptmt.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();			
+		}
 	}
 	
 	public void close() {

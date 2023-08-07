@@ -1,6 +1,10 @@
+<%@page import="model_p.PageData"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%
+	PageData pd = (PageData)request.getAttribute("pd");
+%>
 <table border="">
 	<tbody>
 		<tr>
@@ -34,10 +38,10 @@
 		</c:if>
 		<tr>
 			<td colspan="2" align="right">
-				<a href="BreplyForm?id=${ mainData.id }">답변</a>
-				<a href="BmodifyForm?id=${ mainData.id }">수정</a>
-				<a href="BdeleteForm?id=${ mainData.id }">삭제</a>
-				<a href="BList">목록으로</a>
+				<a href="BreplyForm?id=${ mainData.id }&page=<%= pd.page %>">답변</a>
+				<a href="BmodifyForm?id=${ mainData.id }&page=<%= pd.page %>">수정</a>
+				<a href="BdeleteForm?id=${ mainData.id }&page=<%= pd.page %>">삭제</a>
+				<a href="BList?page=<%= pd.page %>">목록으로</a>
 			</td>
 		</tr>
 	</tbody>

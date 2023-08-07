@@ -10,7 +10,7 @@
 		<tr align="center">
 			<th><a href="/mvcProj/info">회사소개</a></th>
 			<th><a href="/mvcProj/product">제품</a></th>
-			<th><a href="/mvcProj/gallery">갤러리</a></th>
+			<th><a href="/mvcProj/gallery/GalleryList">갤러리</a></th>
 			<th><a href="/mvcProj/board/BList">게시판</a></th>
 		</tr>
 	</thead>

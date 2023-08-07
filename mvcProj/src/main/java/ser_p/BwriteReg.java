@@ -9,6 +9,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import controller.BoardService;
 import model_p.BoardDAO;
 import model_p.BoardDTO;
+import model_p.PageData;
 
 public class BwriteReg implements BoardService {
 
@@ -32,7 +33,7 @@ public class BwriteReg implements BoardService {
 			
 			System.out.println(dto.getId());
 			
-			request.setAttribute("mainPage", "alert");
+			request.setAttribute("mainPage", "inc/alert");
 			request.setAttribute("msg", "작성이 완료되었습니다.");
 			request.setAttribute("goUrl", "BDetail?id="+dto.getId());
 

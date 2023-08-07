@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import controller.BoardService;
 import model_p.BoardDAO;
+import model_p.PageData;
 
 public class BList implements BoardService {
 	
@@ -12,7 +13,11 @@ public class BList implements BoardService {
 		request.setAttribute("mainTitle", "게시판 목록");
 		System.out.println("BList.execute() 실행");
 		
-		request.setAttribute("mainData", new BoardDAO().list());
+		PageData pd = (PageData)request.getAttribute("pd");
+		
+		pd.calc();
+		
+		request.setAttribute("mainData", new BoardDAO().list(pd));
 	}
 
 }

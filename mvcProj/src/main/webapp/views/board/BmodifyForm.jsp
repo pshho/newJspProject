@@ -1,7 +1,18 @@
+<%@page import="model_p.PageData"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<form action="BmodifyReg" method="post" enctype="multipart/form-data">
+<%
+	PageData pd = (PageData)request.getAttribute("pd");
+%>
+<script type="text/javascript">
+	function fileDel(){
+		alert("파일을 정말 삭제하시겠습니까?");
+		modifyF.action="BFileDelete?page=<%= pd.page %>";
+		modifyF.submit();
+	}
+</script>
+<form action="BmodifyReg?page=${ param.page }" method="post" enctype="multipart/form-data" name="modifyF">
 	<table border="">
 		<tr>
 			<td width="100px">번호</td>
@@ -27,24 +38,26 @@
 			<td>암호</td>
 			<td><input type="text" name="pw" style="width: 99%;" /></td>
 		</tr>
-		<tr>
-			<td>파일</td>
-			<td>
-				<c:choose>
-					<c:when test="${ mainData.upfile eq '' }">
-						<input type="file" name="upfile" style="width: 99%;" />
-					</c:when>
-					<c:otherwise>
-						${ mainData.upfile }<input type="button" value="파일삭제">
-					</c:otherwise>
-				</c:choose>
-			</td>
-		</tr>
+		<c:if test="${ mainData.seq eq 0 }">
+			<tr>
+				<td>파일</td>
+				<td>
+					<c:choose>
+						<c:when test="${ mainData.upfile eq '' }">
+							<input type="file" name="upfile" style="width: 99%;" />
+						</c:when>
+						<c:otherwise>
+							${ mainData.upfile }<input type="button" value="파일삭제" onclick="fileDel()">
+						</c:otherwise>
+					</c:choose>
+				</td>
+			</tr>
+		</c:if>
 		<tr>
 			<td colspan="2" align="center">
 				<input type="submit" value="수정하기" />
 				<input type="reset" value="초기화" />
-				<a href="BDetail?id=${ mainData.id }">뒤로</a>
+				<a href="BDetail?id=${ mainData.id }&page=${ param.page }">뒤로</a>
 			</td>
 		</tr>
 	</table>

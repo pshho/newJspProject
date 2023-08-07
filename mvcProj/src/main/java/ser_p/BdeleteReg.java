@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import controller.BoardService;
 import model_p.BoardDAO;
 import model_p.BoardDTO;
+import model_p.PageData;
 
 public class BdeleteReg implements BoardService {
 
@@ -18,12 +19,13 @@ public class BdeleteReg implements BoardService {
 		path = "C:\\newJspProject\\mvcProj\\src\\main\\webapp\\up\\";
 		
 		BoardDTO dto = new BoardDTO();
+		PageData pd = (PageData)request.getAttribute("pd");
 		
 		dto.setId(Integer.parseInt(request.getParameter("id")));
 		dto.setPw(request.getParameter("pw"));
 		
 		String msg = "비밀번호가 일치하지 않습니다.";
-		String goUrl = "BdeleteForm?id="+dto.getId();
+		String goUrl = "BdeleteForm?id="+dto.getId()+"&page="+pd.page;
 		
 		BoardDTO delDTO = new BoardDAO().idPwChk(dto);
 		
@@ -35,10 +37,10 @@ public class BdeleteReg implements BoardService {
 			
 			new BoardDAO().delete(dto);				
 			msg = "삭제되었습니다.";
-			goUrl = "BList";
+			goUrl = "BList?page="+pd.page;
 		}
 		
-		request.setAttribute("mainPage", "alert");
+		request.setAttribute("mainPage", "inc/alert");
 		request.setAttribute("msg", msg);
 		request.setAttribute("goUrl", goUrl);
 	}
