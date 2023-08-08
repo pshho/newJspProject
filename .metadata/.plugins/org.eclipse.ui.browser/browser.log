@@ -21,3 +21,8 @@
 8월 07, 2023 19:33:28.724 NEW SESSION
 8월 07, 2023 19:33:28.724 [21868:19776:0807/193328.722:ERROR:device_event_log_impl.cc(222)] [19:33:28.721] USB: usb_service_win.cc:104 SetupDiGetDeviceProperty({{A45C254E-DF1C-4EFD-8020-67D146A850E0}, 6}) failed: ��Ұ� �����ϴ�. (0x490)
 8월 07, 2023 21:53:35.821 [21868:19776:0807/215335.821:ERROR:device_event_log_impl.cc(222)] [21:53:35.819] USB: usb_service_win.cc:104 SetupDiGetDeviceProperty({{A45C254E-DF1C-4EFD-8020-67D146A850E0}, 6}) failed: ��Ұ� �����ϴ�. (0x490)
+
+8월 07, 2023 23:19:22.634 NEW SESSION
+8월 07, 2023 23:19:22.634 [18980:15668:0807/231922.632:ERROR:usb_descriptors.cc(141)] Failed to read length for configuration 1.
+8월 07, 2023 23:19:22.635 [18980:15668:0807/231922.633:ERROR:usb_descriptors.cc(100)] Failed to read all configuration descriptors. Expected 2, got 1.
+8월 07, 2023 23:19:22.635 [18980:15668:0807/231922.633:ERROR:device_event_log_impl.cc(222)] [23:19:22.633] USB: usb_device_win.cc:95 Failed to read descriptors from \\?\usb#vid_0bda&pid_8153#000001#{a5dcbf10-6530-11d2-901f-00c04fb951ed}.

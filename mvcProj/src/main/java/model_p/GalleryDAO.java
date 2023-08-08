@@ -43,6 +43,7 @@ public class GalleryDAO {
 				gDto.setUpfile(rs.getString("upfile"));
 				gDto.setDescriptions(rs.getString("descriptions"));
 				gDto.setReg_date(rs.getTimestamp("reg_date"));
+				gDto.setCnt(rs.getInt("cnt"));
 				
 				arrDto.add(gDto);
 			}
@@ -52,7 +53,6 @@ public class GalleryDAO {
 		} finally {
 			close();
 		}
-		
 		
 		return arrDto;
 	}
@@ -87,9 +87,15 @@ public class GalleryDAO {
 	
 	public GalleryDTO detail(GalleryDTO gDto) {
 		GalleryDTO dgDto = null;
-		sql = "select * from gallery where id = ?";
 		
 		try {
+			sql = "update gallery set cnt = cnt + 1 where id = ?";
+			ptmt = con.prepareStatement(sql);
+			ptmt.setInt(1, gDto.getId());
+			ptmt.executeUpdate();
+			ptmt.close();
+			
+			sql = "select * from gallery where id = ?";
 			ptmt = con.prepareStatement(sql);
 			ptmt.setInt(1, gDto.getId());
 			rs = ptmt.executeQuery();
@@ -110,8 +116,78 @@ public class GalleryDAO {
 			close();
 		}
 		
-		
 		return dgDto;
+	}
+	
+	public GalleryDTO isIdPwChk(GalleryDTO gDto) {
+		sql = "select * from gallery where id = ? and pw = ?";
+		
+		GalleryDTO ggDto = new GalleryDTO();
+		
+		try {
+			ptmt = con.prepareStatement(sql);
+			ptmt.setInt(1, gDto.getId());
+			ptmt.setString(2, gDto.getPw());
+			rs = ptmt.executeQuery();
+			
+			rs.next();
+			ggDto.setUpfile(rs.getString("upfile"));
+			ggDto.setId(rs.getInt("id"));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		
+		return ggDto;
+	}
+	
+	public void delete(GalleryDTO gDto) {
+		sql = "delete from gallery where id = ?";
+		
+		try {
+			ptmt = con.prepareStatement(sql);
+			ptmt.setInt(1, gDto.getId());
+			ptmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}	
+	}
+	
+	public void update(GalleryDTO gDto) {
+		sql = "update gallery set title = ?, descriptions = ?, upfile = ? where id = ? and pw = ?";
+		
+		try {
+			ptmt = con.prepareStatement(sql);
+			ptmt.setString(1, gDto.getTitle());
+			ptmt.setString(2, gDto.getDescriptions());
+			ptmt.setString(3, gDto.getUpfile());
+			ptmt.setInt(4, gDto.getId());
+			ptmt.setString(5, gDto.getPw());
+			ptmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+	}
+	
+	public void fildUpdate(GalleryDTO gDto) {
+		sql = "update gallery set upfile = '' where id = ? and pw = ?";
+		
+		try {
+			ptmt = con.prepareStatement(sql);
+			ptmt.setInt(1, gDto.getId());
+			ptmt.setString(2, gDto.getPw());
+			ptmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
 	}
 	
 	public void close() {

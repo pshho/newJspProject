@@ -31,9 +31,8 @@
 		</tr>
 		<tr>
 			<td colspan="2" align="right">
-				<a href="BreplyForm?id=${ mainData.id }">답변</a>
-				<a href="BmodifyForm?id=${ mainData.id }">수정</a>
-				<a href="BdeleteForm?id=${ mainData.id }">삭제</a>
+				<a href="GalleryModify?id=${ mainData.id }">수정</a>
+				<a href="GalleryDelete?id=${ mainData.id }">삭제</a>
 				<a href="GalleryList">목록으로</a>
 			</td>
 		</tr>

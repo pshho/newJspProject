@@ -2,11 +2,12 @@ package model_p;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.regex.Pattern;
 
 public class GalleryDTO {
 	int id, cnt;
 	String title, pname, pw, upfile, descriptions;
-	SimpleDateFormat sd = new SimpleDateFormat("yyyy-HH-mm (E) hh:mm");
+	SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd (E) HH:mm");
 	Date reg_date;
 	
 	public int getCnt() {
@@ -40,10 +41,17 @@ public class GalleryDTO {
 		this.pw = pw;
 	}
 	public String getUpfile() {
+		if (upfile == null || upfile.trim().equals("") || upfile.trim().equals("null")) {
+			upfile = "";
+		}
 		return upfile;
 	}
 	public void setUpfile(String upfile) {
 		this.upfile = upfile;
+	}
+	public boolean getIsImg() {
+		boolean match = Pattern.matches(".*[.](jpg|png|gif)", getUpfile().toLowerCase());
+		return match;
 	}
 	public String getDescriptions() {
 		return descriptions;

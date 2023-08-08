@@ -20,7 +20,7 @@
 		</tr>
 		<tr>
 			<td>파일</td>
-			<td><input type="file" name="upfile" style="width: 99%;" /></td>
+			<td><p>파일은 이미지만 가능합니다.</p><input type="file" name="upfile" style="width: 99%;" /></td>
 		</tr>
 		<tr>
 			<td colspan="2" align="center">

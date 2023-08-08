@@ -13,35 +13,27 @@ import controller.BoardService;
 import model_p.GalleryDAO;
 import model_p.GalleryDTO;
 
-public class GalleryWrite implements BoardService {
+public class GalleryFileDelete implements BoardService {
 
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
-		request.setAttribute("mainTitle", "갤러리 작성");
-		
 		String path = "C:\\newJspProject\\mvcProj\\src\\main\\webapp\\galUp";
 		
 		try {
 			MultipartRequest mr = new MultipartRequest(request, path, 10*1024*1024, "utf-8", new DefaultFileRenamePolicy());
+			
 			GalleryDTO gDto = new GalleryDTO();
-			
-			gDto.setTitle(mr.getParameter("title"));
-			gDto.setPname(mr.getParameter("pname"));
-			gDto.setDescriptions(mr.getParameter("descriptions"));
+			gDto.setId(Integer.parseInt(mr.getParameter("id")));
 			gDto.setPw(mr.getParameter("pw"));
-			gDto.setUpfile(mr.getFilesystemName("upfile"));
-				
-			String msg = "작성 완료";
-			String goUrl = null;
 			
-			if(gDto != null) {
-				if(gDto.getIsImg()) {
-					new GalleryDAO().write(gDto);
-					goUrl = "GalleryDetail?id="+gDto.getId();
-				}else {
-					new File(path+"\\"+gDto.getUpfile()).delete();
-					msg = "이미지 파일만 가능합니다.";
-					goUrl = "GalleryWrite";
-				}
+			String msg = "비밀번호를 확인해주세요.";
+			String goUrl = "GalleryModify?id="+gDto.getId();
+			
+			GalleryDTO ggDto = new GalleryDAO().isIdPwChk(gDto);
+			
+			if(!ggDto.getUpfile().equals("")) {
+				new File(path+"\\"+ggDto.getUpfile()).delete();
+				new GalleryDAO().fildUpdate(gDto);
+				msg = "삭제 완료";
 			}
 			
 			request.setAttribute("mainPage", "inc/alert");

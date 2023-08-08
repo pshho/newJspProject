@@ -8,11 +8,12 @@
 <script type="text/javascript">
 	function fileDel(){
 		alert("파일을 정말 삭제하시겠습니까?");
-		modifyF.action="BFileDelete?page=<%= pd.page %>";
+		modifyF.action="GalleryFileDelete";
 		modifyF.submit();
 	}
 </script>
-<form action="BmodifyReg?page=${ param.page }" method="post" enctype="multipart/form-data" name="modifyF">
+<form action="GalleryModify" method="post" enctype="multipart/form-data" name="modifyF">
+	<input type="hidden" name="upfile" value="${ mainData.upfile }">
 	<table border="">
 		<tr>
 			<td width="100px">번호</td>
@@ -32,33 +33,31 @@
 		</tr>
 		<tr>
 			<td>내용</td>
-			<td><textarea cols="30" rows="10" name="content" style="resize: none; width: 99%;">${ mainData.content }</textarea></td>
+			<td><textarea cols="30" rows="10" name="descriptions" style="resize: none; width: 99%;">${ mainData.descriptions }</textarea></td>
 		</tr>
 		<tr>
 			<td>암호</td>
 			<td><input type="text" name="pw" style="width: 99%;" /></td>
 		</tr>
-		<c:if test="${ mainData.seq eq 0 }">
-			<tr>
-				<td>파일</td>
-				<td>
-					<c:choose>
-						<c:when test="${ mainData.upfile eq '' }">
-							<input type="file" name="upfile" style="width: 99%;" />
-							<input type="file" name="upfile" style="width: 99%;" />
-						</c:when>
-						<c:otherwise>
-							${ mainData.upfile }<input type="button" value="파일삭제" onclick="fileDel()">
-						</c:otherwise>
-					</c:choose>
-				</td>
-			</tr>
-		</c:if>
+		<tr>
+			<td>파일</td>
+			<td>
+				<c:choose>
+					<c:when test="${ mainData.upfile eq '' }">
+						<p>이미지 파일만 가능합니다.</p>
+						<input type="file" name="upfile" style="width: 99%;" />
+					</c:when>
+					<c:otherwise>
+						${ mainData.upfile }<input type="button" value="파일삭제" onclick="fileDel()">
+					</c:otherwise>
+				</c:choose>
+			</td>
+		</tr>
 		<tr>
 			<td colspan="2" align="center">
 				<input type="submit" value="수정하기" />
 				<input type="reset" value="초기화" />
-				<a href="BDetail?id=${ mainData.id }&page=${ param.page }">뒤로</a>
+				<a href="GalleryDetail?id=${ mainData.id }">뒤로</a>
 			</td>
 		</tr>
 	</table>
