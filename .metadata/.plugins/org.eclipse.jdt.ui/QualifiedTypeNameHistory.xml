@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="java.util.Map"/>
     <fullyQualifiedTypeName name="java.lang.Override"/>
     <fullyQualifiedTypeName name="org.apache.catalina.tribes.util.Arrays"/>
-    <fullyQualifiedTypeName name="java.util.HashMap"/>
     <fullyQualifiedTypeName name="java.lang.Iterable"/>
     <fullyQualifiedTypeName name="java.util.Iterator"/>
     <fullyQualifiedTypeName name="JspProject.Category.Categories"/>
@@ -13,7 +11,6 @@
     <fullyQualifiedTypeName name="java.io.StringBufferInputStream"/>
     <fullyQualifiedTypeName name="java.util.Arrays"/>
     <fullyQualifiedTypeName name="java.lang.StrictMath"/>
-    <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="javax.swing.text.DateFormatter"/>
     <fullyQualifiedTypeName name="java.time.Year"/>
     <fullyQualifiedTypeName name="java.lang.Integer"/>
@@ -60,4 +57,7 @@
     <fullyQualifiedTypeName name="model_p.GalleryDTO"/>
     <fullyQualifiedTypeName name="model_p.GalleryDAO"/>
     <fullyQualifiedTypeName name="java.io.File"/>
+    <fullyQualifiedTypeName name="java.util.Map"/>
+    <fullyQualifiedTypeName name="java.util.HashMap"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
 </qualifiedTypeNameHistroy>

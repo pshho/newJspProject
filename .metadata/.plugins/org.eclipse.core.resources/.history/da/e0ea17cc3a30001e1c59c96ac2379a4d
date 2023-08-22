@@ -1,9 +1,0 @@
-package exercise;
-
-public class GreenStar {
-
-	public static void main(String[] args) {
-
-	}
-
-}

@@ -31,5 +31,13 @@
 	<a href="include/a.jsp?nick=fff">include</a><br/>
 	<h2>주민번호</h2>
 	<a href="signupEx/resident.jsp">주민번호</a>
+	<h2>쿠키</h2>
+	<a href="cookie/make.jsp">쿠키 생성</a>
+	<a href="cookie/view.jsp">쿠키 View</a>
+	<a href="cookie/modify.jsp">쿠키 수정</a>
+	<a href="cookie/delete.jsp">쿠키 삭제</a>
+	<a href="cookie/logMain.jsp">로그인</a>
+	<h3>쿠키 - 로그인</h3>
+	<a href="loginOut/login.jsp">로그인</a>
 </body>
 </html>
