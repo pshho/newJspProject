@@ -39,5 +39,11 @@
 	<a href="cookie/logMain.jsp">로그인</a>
 	<h3>쿠키 - 로그인</h3>
 	<a href="loginOut/login.jsp">로그인</a>
+	<h3>세션</h3>
+	<a href="session/make.jsp">make</a>
+	<a href="session/view.jsp">view</a>
+	<a href="session/modify.jsp">modify</a>
+	<a href="session/delete.jsp">delete</a>
+	<a href="session/logMain.jsp">로그인 메인</a>
 </body>
 </html>

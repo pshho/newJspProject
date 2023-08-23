@@ -1,31 +1,38 @@
 package login;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class Member {
-	Map<String, String> idPw;
-	String name;
-		
+	String id, pw, name;
+	
 	public Member() {
 		super();
 	}
 	public Member(String id, String pw, String name) {
 		super();
-		idPw = new HashMap<>();
-		idPw.put(id, pw);
+		this.id = id;
+		this.pw = pw;
 		this.name = name;
+		
 	}
-	public Map<String, String> getIdPw() {
-		return idPw;
+	public String getId() {
+		return id;
 	}
-	public void setIdPw(Map<String, String> idPw) {
-		this.idPw = idPw;
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getPw() {
+		return pw;
+	}
+	public void setPw(String pw) {
+		this.pw = pw;
 	}
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	@Override
+	public String toString() {
+		return "Member [id=" + id + ", pw=" + pw + ", name=" + name + "]";
 	}
 }

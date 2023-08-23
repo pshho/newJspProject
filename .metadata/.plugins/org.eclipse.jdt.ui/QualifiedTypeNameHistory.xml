@@ -57,7 +57,7 @@
     <fullyQualifiedTypeName name="model_p.GalleryDTO"/>
     <fullyQualifiedTypeName name="model_p.GalleryDAO"/>
     <fullyQualifiedTypeName name="java.io.File"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="java.util.Map"/>
     <fullyQualifiedTypeName name="java.util.HashMap"/>
-    <fullyQualifiedTypeName name="java.util.List"/>
 </qualifiedTypeNameHistroy>
